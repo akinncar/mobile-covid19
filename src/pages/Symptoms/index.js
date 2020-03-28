@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Slider, Text } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 
+import SymptomIntensity from "../../components/SymtomIntensity";
+
 import {
   Container,
+  ScrollView,
   FormContainer,
+  TextInput,
   GroupSelect,
   LabelSelect,
   Button,
@@ -16,118 +19,89 @@ import {
 } from "./styles";
 
 function Symptoms() {
-  const [selectNose, setSelectNose] = useState(0);
+  const [headache, setHeadache] = useState(0);
+  const [soreThroat, setSoreThroat] = useState(0);
+  const [nauseOrVomiting, setNauseOrVomiting] = useState(0);
+  const [musclePain, setMusclePain] = useState(0);
+  const [dryCough, setDryCough] = useState(0);
+  const [runnyNose, setRunnyNose] = useState(0);
+  const [fever, setFever] = useState(0);
+  const [shortnessOfBreath, setShortnessOfBreath] = useState(0);
+  const [tiredness, setTiredness] = useState(0);
 
   return (
-    <Container>
-      <Formik
-        initialValues={{ name: "", password: "", age: "" }}
-        onSubmit={values => console.log(values)}
-      >
-        {props => (
-          <FormContainer>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Name"
-              onChangeText={props.handleChange("name")}
-              onBlur={props.handleBlur("name")}
-              value={props.values.name}
-            />
-
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Age"
-              onChangeText={props.handleChange("age")}
-              onBlur={props.handleBlur("age")}
-              value={props.values.age}
-            />
-
-            <GroupSelect>
-              <LabelSelect>
-                <Text>Nariz escorrendo</Text>
-                <Text>{selectNose}</Text>
-              </LabelSelect>
-              <Slider
-                value={selectNose}
-                onValueChange={v => setSelectNose(v)}
-                minimumValue={1}
-                maximumValue={5}
-                step={1}
-                minimumTrackTintColor="#008B8B"
-                thumbTintColor="#008B8B"
+    <ScrollView style={{ width: "100%" }}>
+      <Container>
+        <Formik
+          initialValues={{ name: "", password: "", age: "" }}
+          onSubmit={values => console.log(values)}
+        >
+          {props => (
+            <FormContainer>
+              <TextInput
+                placeholder="Nome"
+                onChangeText={props.handleChange("name")}
+                onBlur={props.handleBlur("name")}
+                value={props.values.name}
               />
-            </GroupSelect>
 
-            <GroupSelect>
-              <LabelSelect>
-                <Text>Dor de Garganta</Text>
-                <Text>{selectNose}</Text>
-              </LabelSelect>
-              <Slider
-                value={selectNose}
-                onValueChange={v => setSelectNose(v)}
-                minimumValue={1}
-                maximumValue={5}
-                step={1}
-                minimumTrackTintColor="#008B8B"
-                thumbTintColor="#008B8B"
+              <TextInput
+                placeholder="Idade"
+                onChangeText={props.handleChange("age")}
+                onBlur={props.handleBlur("age")}
+                value={props.values.age}
               />
-            </GroupSelect>
 
-            <GroupSelect>
-              <LabelSelect>
-                <Text>Tosse</Text>
-                <Text>{selectNose}</Text>
-              </LabelSelect>
-              <Slider
-                value={selectNose}
-                onValueChange={v => setSelectNose(v)}
-                minimumValue={1}
-                maximumValue={5}
-                step={1}
-                minimumTrackTintColor="#008B8B"
-                thumbTintColor="#008B8B"
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={headache}
+                onChangeValue={setHeadache}
               />
-            </GroupSelect>
-
-            <GroupSelect>
-              <LabelSelect>
-                <Text>Febre</Text>
-                <Text>{selectNose}</Text>
-              </LabelSelect>
-              <Slider
-                value={selectNose}
-                onValueChange={v => setSelectNose(v)}
-                minimumValue={1}
-                maximumValue={5}
-                step={1}
-                minimumTrackTintColor="#008B8B"
-                thumbTintColor="#008B8B"
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={soreThroat}
+                onChangeValue={setSoreThroat}
               />
-            </GroupSelect>
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={nauseOrVomiting}
+                onChangeValue={setNauseOrVomiting}
+              />
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={dryCough}
+                onChangeValue={setMusclePain}
+              />
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={runnyNose}
+                onChangeValue={setRunnyNose}
+              />
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={fever}
+                onChangeValue={setFever}
+              />
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={shortnessOfBreath}
+                onChangeValue={setShortnessOfBreath}
+              />
+              <SymptomIntensity
+                title="Nariz escorrendo"
+                value={tiredness}
+                onChangeValue={setTiredness}
+              />
 
-            <Button>
-              <ButtonText>Enviar</ButtonText>
-            </Button>
-          </FormContainer>
-        )}
-      </Formik>
-    </Container>
+              <Button>
+                <ButtonText>Enviar</ButtonText>
+              </Button>
+            </FormContainer>
+          )}
+        </Formik>
+      </Container>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-    padding: 8
-  },
-  TextInput: {
-    backgroundColor: "#f5f6f7",
-    padding: 10,
-    margin: 10
-  }
-});
 
 export default Symptoms;

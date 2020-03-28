@@ -4,11 +4,25 @@ export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   justify-content: center;
-  margin: 0 24px;
+  margin: 64px 36px;
+`;
+
+export const ScrollView = styled.ScrollView`
+  flex: 1;
+  background: #fff;
 `;
 
 export const FormContainer = styled.SafeAreaView`
   align-self: stretch;
+`;
+
+export const TextInput = styled.TextInput`
+  background-color: #fff;
+  border-bottom-width: 1px;
+  border-bottom-color: #e2e2e2;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 export const GroupSelect = styled.View`
