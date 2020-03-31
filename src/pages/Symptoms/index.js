@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 import Input from "../../components/Input";
+import Button from "../../components/Button";
 import SymptomIntensity from "../../components/SymtomIntensity";
 
-import { Container, ScrollView, Content, Button, ButtonText } from "./styles";
+import { Container, ScrollView, Content } from "./styles";
 
 function Symptoms() {
   const [name, setName] = useState("");
@@ -74,9 +75,7 @@ function Symptoms() {
             onChangeValue={setTiredness}
           />
 
-          <Button onPress={() => handleSubmit()}>
-            <ButtonText>Enviar</ButtonText>
-          </Button>
+          <Button onPress={() => handleSubmit()}>Enviar</Button>
         </Content>
       </Container>
     </ScrollView>
