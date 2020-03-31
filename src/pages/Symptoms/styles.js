@@ -12,17 +12,9 @@ export const ScrollView = styled.ScrollView`
   background: #fff;
 `;
 
-export const FormContainer = styled.SafeAreaView`
+export const Content = styled.View`
   align-self: stretch;
-`;
-
-export const TextInput = styled.TextInput`
-  background-color: #fff;
-  border-bottom-width: 1px;
-  border-bottom-color: #e2e2e2;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 28px;
 `;
 
 export const GroupSelect = styled.View`
@@ -35,6 +27,7 @@ export const LabelSelect = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
+  margin-top: 12px;
   align-self: stretch;
   background-color: #008b8b;
   padding: 12px 0;

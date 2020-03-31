@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 
-import { SafeAreaView } from "react-native-safe-area-context";
-
-import { Formik, Form, Field } from "formik";
-import * as yup from "yup";
-
+import Input from "../../components/Input";
 import SymptomIntensity from "../../components/SymtomIntensity";
 
-import {
-  Container,
-  ScrollView,
-  FormContainer,
-  TextInput,
-  GroupSelect,
-  LabelSelect,
-  Button,
-  ButtonText
-} from "./styles";
+import { Container, ScrollView, Content, Button, ButtonText } from "./styles";
 
 function Symptoms() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
   const [headache, setHeadache] = useState(0);
   const [soreThroat, setSoreThroat] = useState(0);
   const [nauseOrVomiting, setNauseOrVomiting] = useState(0);
@@ -29,76 +18,66 @@ function Symptoms() {
   const [shortnessOfBreath, setShortnessOfBreath] = useState(0);
   const [tiredness, setTiredness] = useState(0);
 
+  function handleSubmit() {}
+
   return (
     <ScrollView style={{ width: "100%" }}>
       <Container>
-        <Formik
-          initialValues={{ name: "", password: "", age: "" }}
-          onSubmit={values => console.log(values)}
-        >
-          {props => (
-            <FormContainer>
-              <TextInput
-                placeholder="Nome"
-                onChangeText={props.handleChange("name")}
-                onBlur={props.handleBlur("name")}
-                value={props.values.name}
-              />
+        <Content>
+          <Input placeholder="Nome" onChangeText={setName} value={name} />
 
-              <TextInput
-                placeholder="Idade"
-                onChangeText={props.handleChange("age")}
-                onBlur={props.handleBlur("age")}
-                value={props.values.age}
-              />
+          <Input placeholder="Idade" onChangeText={setAge} value={age} />
 
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={headache}
-                onChangeValue={setHeadache}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={soreThroat}
-                onChangeValue={setSoreThroat}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={nauseOrVomiting}
-                onChangeValue={setNauseOrVomiting}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={dryCough}
-                onChangeValue={setMusclePain}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={runnyNose}
-                onChangeValue={setRunnyNose}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={fever}
-                onChangeValue={setFever}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={shortnessOfBreath}
-                onChangeValue={setShortnessOfBreath}
-              />
-              <SymptomIntensity
-                title="Nariz escorrendo"
-                value={tiredness}
-                onChangeValue={setTiredness}
-              />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={headache}
+            onChangeValue={setHeadache}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={soreThroat}
+            onChangeValue={setSoreThroat}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={nauseOrVomiting}
+            onChangeValue={setNauseOrVomiting}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={musclePain}
+            onChangeValue={setMusclePain}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={dryCough}
+            onChangeValue={setDryCough}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={runnyNose}
+            onChangeValue={setRunnyNose}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={fever}
+            onChangeValue={setFever}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={shortnessOfBreath}
+            onChangeValue={setShortnessOfBreath}
+          />
+          <SymptomIntensity
+            title="Nariz escorrendo"
+            value={tiredness}
+            onChangeValue={setTiredness}
+          />
 
-              <Button>
-                <ButtonText>Enviar</ButtonText>
-              </Button>
-            </FormContainer>
-          )}
-        </Formik>
+          <Button onPress={() => handleSubmit()}>
+            <ButtonText>Enviar</ButtonText>
+          </Button>
+        </Content>
       </Container>
     </ScrollView>
   );

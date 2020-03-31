@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Platform } from "react-native";
 import Constants from "expo-constants";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
@@ -26,8 +25,9 @@ function Map() {
   async function getLocationAsync() {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== "granted") {
+      await Permissions.askAsync(Permissions.LOCATION);
       this.setState({
-        errorMessage: "Permission to access location was denied"
+        errorMessage: "Você precisa fornecer permissões de localização"
       });
     }
 
