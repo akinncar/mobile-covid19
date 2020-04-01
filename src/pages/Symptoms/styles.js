@@ -14,7 +14,7 @@ export const ScrollView = styled.ScrollView`
 
 export const Content = styled.View`
   align-self: stretch;
-  margin: 28px;
+  /* margin: 28px; */
 `;
 
 export const GroupSelect = styled.View`

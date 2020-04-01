@@ -8,6 +8,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 import LoginScreen from "./pages/Login";
+import SignUpScreen from "./pages/SignUp";
 import MapScreen from "./pages/Map";
 import SymptomsScreen from "./pages/Symptoms";
 
@@ -35,6 +36,11 @@ export default function Routes() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
