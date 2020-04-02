@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 
-export const TInput = styled.TextInput`
+import { TextInputMask } from "react-native-masked-text";
+
+export const TInputMask = styled(TextInputMask)`
   background-color: #fff;
   border-bottom-width: 1px;
   border-bottom-color: #e2e2e2;
