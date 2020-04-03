@@ -29,26 +29,38 @@ function BottomTab() {
   );
 }
 
-export default function Routes() {
+function SignIn() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="BottomTab"
-          component={BottomTab}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUpScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 }
+
+export default signed => (
+  <NavigationContainer>
+    <Stack.Navigator
+      initialRouteName={signed.signed == true ? "BottomTab" : "SignIn"}
+    >
+      <Stack.Screen
+        name="BottomTab"
+        component={BottomTab}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
+);

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import SymptomIntensity from "../../components/SymtomIntensity";
 
 import { Container, ScrollView, Content } from "./styles";
+
+import { getLocation } from "../../utils/LocationUtils";
 
 function Symptoms() {
   const [name, setName] = useState("");
@@ -18,6 +20,16 @@ function Symptoms() {
   const [fever, setFever] = useState(0);
   const [shortnessOfBreath, setShortnessOfBreath] = useState(0);
   const [tiredness, setTiredness] = useState(0);
+  const [location, setLocation] = useState();
+
+  useEffect(() => {
+    loadLocation();
+  });
+
+  async function loadLocation() {
+    let location = await getLocation();
+    setLocation(location);
+  }
 
   function handleSubmit() {}
 

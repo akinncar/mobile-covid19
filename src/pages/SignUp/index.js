@@ -7,7 +7,7 @@ import Button from "../../components/Button";
 
 import { Container } from "./styles";
 
-import { userCreate } from "../../store/modules/user/action";
+import { userCreate } from "../../store/modules/user/actions";
 
 export default function SignUp({ navigation }) {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function SignUp({ navigation }) {
   const [password, setPassword] = useState("teste");
   const [confirmPassword, setConfirmPassword] = useState("teste");
 
-  function signUpRequest() {
+  function signUp() {
     try {
       dispatch(
         userCreate({
@@ -26,14 +26,14 @@ export default function SignUp({ navigation }) {
           password
         })
       );
-      // navigation.navigate("BottomTab");
+      navigation.navigate("Login");
     } catch (e) {
       // saving error
     }
   }
 
   function handleSignUp() {
-    password === confirmPassword && signUpRequest();
+    password === confirmPassword && signUp();
   }
 
   return (

@@ -1,17 +1,19 @@
 import React from "react";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
 import { StatusBar } from "react-native";
 
-import { Provider } from "react-redux";
-import store from "./src/store";
-
-import Routes from "./src/routes";
+import { store, persistor } from "./src/store";
+import Index from "./index";
 
 export default function App() {
   console.disableYellowBox = true;
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
-      <Routes />
+      <PersistGate persistor={persistor}>
+        <StatusBar barStyle="dark-content" />
+        <Index />
+      </PersistGate>
     </Provider>
   );
 }

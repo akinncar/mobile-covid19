@@ -4,11 +4,14 @@ import { apiSignUp } from "../../../services/api";
 
 export function* userCreate({ user }) {
   try {
-    const response = yield call(apiSignUp, user);
-    // console.log("response", response);
+    yield call(apiSignUp, user);
+    Alert.alert(
+      "Cadastro completo!",
+      "Faça o login com a conta que você acabou de criar"
+    );
   } catch (error) {
     Alert.alert(
-      "Não foi possível cadastrar o usuário",
+      "Não foi possível efetuar o cadastro",
       error.response.data.error
     );
   }
