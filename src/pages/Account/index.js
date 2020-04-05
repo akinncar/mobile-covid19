@@ -13,10 +13,8 @@ export default function Account({ navigation }) {
   const auth = useSelector(state => state.auth);
 
   async function logOut() {
-    try {
-      await dispatch(signOut());
-      await navigation.navigate("SignIn");
-    } catch (e) {}
+    await dispatch(signOut());
+    await navigation.navigate("SignIn");
   }
 
   function handleSignOut() {
@@ -25,7 +23,7 @@ export default function Account({ navigation }) {
 
   return (
     <Container>
-      <Text>{auth.signed.toString()}</Text>
+      {/* <Text>{auth.signed.toString()}</Text> */}
       <Button onPress={() => handleSignOut()}>Sair</Button>
     </Container>
   );

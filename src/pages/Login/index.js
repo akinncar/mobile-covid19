@@ -15,19 +15,19 @@ export default function Login({ navigation }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    auth.signed && navigation.navigate("Map");
+    auth.signed && navigation.navigate("BottomTab");
   });
 
   function signIn() {
-    try {
-      dispatch(signInRequest(email, password));
-    } catch (e) {}
+    dispatch(signInRequest(email, password));
   }
 
-  function handleSignIn() {
+  async function handleSignIn() {
     signIn();
+    await setLoading(false);
   }
 
   return (
@@ -44,7 +44,9 @@ export default function Login({ navigation }) {
         value={password}
         onChangeText={text => setPassowrd(text)}
       />
-      <Button onPress={() => handleSignIn()}>Login</Button>
+      <Button onPress={() => !loading && (setLoading(true), handleSignIn())}>
+        {loading ? "Enviando..." : "Login"}
+      </Button>
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <SignUp>ou cadastres-se aqui</SignUp>
       </TouchableOpacity>

@@ -2,6 +2,7 @@ import { produce } from "immer";
 
 const initialState = {
   user: {
+    id: null,
     email: "",
     cpf: "",
     password: ""

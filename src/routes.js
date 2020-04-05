@@ -20,6 +20,7 @@ function BottomTab() {
       tabBarOptions={{
         activeTintColor: "#008b8b"
       }}
+      initialRouteName="Map"
     >
       <Tab.Screen
         name="Map"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Alert } from "react-native";
+import { useSelector } from "react-redux";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -11,8 +12,10 @@ import { apiSymptomReport } from "../../services/api";
 import { getLocation } from "../../utils/LocationUtils";
 
 function Symptoms() {
+  const user = useSelector(state => state.auth.user);
+
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState();
   const [headache, setHeadache] = useState(0);
   const [soreThroat, setSoreThroat] = useState(0);
   const [nauseOrVomiting, setNauseOrVomiting] = useState(0);
@@ -37,6 +40,7 @@ function Symptoms() {
 
   async function handleSubmit() {
     const response = await apiSymptomReport({
+      userId: user.id,
       name,
       age,
       headache,

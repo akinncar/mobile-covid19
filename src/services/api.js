@@ -29,6 +29,7 @@ export const apiSymptomReport = async symptoms => {
     const url = "symptom-report";
 
     const {
+      userId,
       name,
       age,
       headache,
@@ -46,7 +47,7 @@ export const apiSymptomReport = async symptoms => {
 
     return await api.post(url, {
       user: {
-        userId: 6,
+        userId,
         name,
         age,
         latitude: location.coords.latitude,
@@ -91,6 +92,21 @@ export const apiSymptomReport = async symptoms => {
         }
       ],
       observation
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const apiUserList = async location => {
+  try {
+    const url = "users";
+    const { latitude, longitude } = location;
+    return await api.get(url, {
+      params: {
+        latitude,
+        longitude
+      }
     });
   } catch (error) {
     throw error;

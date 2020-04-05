@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 import { Container, SignIn } from "./styles";
 
 import { userCreate } from "../../store/modules/user/actions";
+import { validateCpf } from "../../utils/ValidateUtils";
 
 export default function SignUp({ navigation }) {
   const dispatch = useDispatch();
@@ -19,18 +20,14 @@ export default function SignUp({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function signUp() {
-    try {
-      dispatch(
-        userCreate({
-          email,
-          cpf,
-          password
-        })
-      );
-      navigation.navigate("Login");
-    } catch (e) {
-      // saving error
-    }
+    dispatch(
+      userCreate({
+        email,
+        cpf,
+        password
+      })
+    );
+    navigation.navigate("Login");
   }
 
   function handleSignUp() {
@@ -40,9 +37,9 @@ export default function SignUp({ navigation }) {
       return Alert.alert("O e-mail não é válido");
     } else if (!cpf) {
       return Alert.alert("Você precisa preencher o campo CPF");
-      // } else if (!cpfField.isValid()) {
-      //   return Alert.alert("O CPF não é válido");
-    } else if (password !== null) {
+    } else if (!validateCpf(cpf)) {
+      return Alert.alert("O CPF não é válido");
+    } else if (!password) {
       return Alert.alert("A senha é muito fraca");
     } else if (password !== confirmPassword) {
       return Alert.alert("As senhas não conferem");
