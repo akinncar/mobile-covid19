@@ -8,9 +8,3 @@ export const Container = styled.View`
   padding: 0 28px;
   background: #fff;
 `;
-
-export const SignIn = styled.Text`
-  color: #008b8b;
-  margin: 24px 0;
-  text-align: center;
-`;

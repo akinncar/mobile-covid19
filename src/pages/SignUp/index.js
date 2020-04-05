@@ -1,21 +1,22 @@
 import React, { useState } from "react";
+import { Alert, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import Input from "../../components/Input";
 import InputMask from "../../components/InputMask";
 import Button from "../../components/Button";
 
-import { Container } from "./styles";
+import { Container, SignIn } from "./styles";
 
 import { userCreate } from "../../store/modules/user/actions";
 
 export default function SignUp({ navigation }) {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("leonardo@gmail.com");
-  const [cpf, setCpf] = useState("88888888888");
-  const [password, setPassword] = useState("teste");
-  const [confirmPassword, setConfirmPassword] = useState("teste");
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   function signUp() {
     try {
@@ -33,7 +34,21 @@ export default function SignUp({ navigation }) {
   }
 
   function handleSignUp() {
-    password === confirmPassword && signUp();
+    if (!email) {
+      return Alert.alert("Você precisa preencher o campo e-mail");
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      return Alert.alert("O e-mail não é válido");
+    } else if (!cpf) {
+      return Alert.alert("Você precisa preencher o campo CPF");
+      // } else if (!cpfField.isValid()) {
+      //   return Alert.alert("O CPF não é válido");
+    } else if (password !== null) {
+      return Alert.alert("A senha é muito fraca");
+    } else if (password !== confirmPassword) {
+      return Alert.alert("As senhas não conferem");
+    } else {
+      signUp();
+    }
   }
 
   return (
@@ -74,6 +89,9 @@ export default function SignUp({ navigation }) {
         }}
       />
       <Button onPress={() => handleSignUp()}>CADASTRAR</Button>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <SignIn>{`Já possui cadastro?\n Faça o login clicando aqui`}</SignIn>
+      </TouchableOpacity>
     </Container>
   );
 }

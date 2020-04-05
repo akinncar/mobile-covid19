@@ -3,10 +3,12 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome as Icon } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+import AccountScreen from "./pages/Account";
 import LoginScreen from "./pages/Login";
 import SignUpScreen from "./pages/SignUp";
 import MapScreen from "./pages/Map";
@@ -14,16 +16,40 @@ import SymptomsScreen from "./pages/Symptoms";
 
 function BottomTab() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: "#008b8b"
+      }}
+    >
       <Tab.Screen
         name="Map"
         component={MapScreen}
-        options={{ title: "Áreas de Risco" }}
+        options={{
+          tabBarLabel: "Áreas de Risco",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="map-marker" color={color} size={24} />
+          )
+        }}
       />
       <Tab.Screen
         name="Symptoms"
         component={SymptomsScreen}
-        options={{ title: "Meus Sintomas" }}
+        options={{
+          tabBarLabel: "Meus Sintomas",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="medkit" color={color} size={24} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          tabBarLabel: "Sua Conta",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="user" color={color} size={24} />
+          )
+        }}
       />
     </Tab.Navigator>
   );

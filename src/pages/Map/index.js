@@ -9,16 +9,16 @@ function Map() {
   return (
     <View>
       <StyledMapView>
-        <Marker
+        {/* <Marker
           pinColor="red"
           // icon={}
           coordinate={
             {
-              // longitude: location && location.coords.longitude,
-              // latitude: location && location.coords.latitude
+              longitude: location && location.coords.longitude,
+              latitude: location && location.coords.latitude
             }
           }
-        />
+        /> */}
       </StyledMapView>
     </View>
   );
